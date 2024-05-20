@@ -132,7 +132,6 @@ hr {
   margin: 0.25rem;
   line-height: 1;
   font-size: 1rem;
-  overflow: hidden;
   hyphens: none;
   overflow-wrap: break-word;
 }
