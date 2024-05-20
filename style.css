@@ -1,0 +1,138 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+:root {
+  color-scheme: dark;
+  scroll-behavior: smooth;
+}
+
+::-moz-focus-inner {
+  padding: 0;
+  border-style: none;
+}
+
+body {
+  overflow-x: hidden;
+  padding: 1.5rem;
+  padding-top: 1rem;
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #dee2e6;
+  text-align: center;
+  background-color: #212529;
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: #0000;
+}
+
+h1 {
+  font-size: 2.5rem;
+  font-weight: 500;
+  line-height: 1.2;
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+h2 {
+  font-size: 2rem;
+  font-weight: 500;
+  line-height: 1.2;
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+
+p {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+a {
+  color: #6ea7fe;
+  text-decoration: underline;
+  text-decoration-color: #6c757dbf;
+}
+a:hover {
+  color: #5685cb;
+}
+
+button {
+  border-radius: 0;
+  margin: 0;
+  text-transform: none;
+  -webkit-appearance: button;
+  cursor: pointer;
+  font-family: inherit;
+	font-size: 2rem;
+	line-height: 1.5;
+}
+button:focus:not(:focus-visible) {
+  outline: 0;
+}
+
+hr {
+  margin: 1rem 0;
+  border: 0;
+  border-top: 1px solid #ffffffbf;
+  opacity: 0.25;
+}
+
+.head {
+  text-align: center;
+  line-height: 1;
+  margin-bottom: 0.25rem;
+}
+.head > * {
+  margin-bottom: 0;
+  margin-top: 0;
+  font-weight: lighter;
+}
+
+.spread {
+  letter-spacing: 0.8ch;
+}
+
+.sound-container {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  flex-flow: row wrap;
+  gap: 0.625rem;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+}
+.sound-container > div {
+  flex: 0;
+  padding: 0;
+  margin: 0;
+  width: 6.25rem;
+  height: 6.25rem;
+  aspect-ratio: 1 / 1;
+}
+.sound-container > div > button {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+  background: #1b1e22; /* this should be used if an image is not provided */
+  color: #dee2e6;
+  border-width: 1px;
+  border-color: #ffffff26;
+  border-radius: 0.375rem;
+  overflow: hidden;
+}
+.sound-container > div > button > * {
+  padding: 0;
+  margin: 0.25rem;
+  line-height: 1;
+  font-size: 1rem;
+  overflow: hidden;
+  hyphens: none;
+  overflow-wrap: break-word;
+}
