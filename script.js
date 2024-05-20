@@ -89,7 +89,7 @@ const addPack = (data) => {
     let button = mel("button", { type: "button" });
     // add bg and click detection to button
     if (v["bg"] && v["bg"].length > 0 && isURI(v["bg"])) {
-      button.style.background = `no-repeat border-box center/100% url("${v["bg"]}"), #1b1e22`;
+      button.style.background = `no-repeat center/100% url("${v["bg"]}"), #1b1e22`;
     };
     button.addEventListener("click", () => {
       // play sound
