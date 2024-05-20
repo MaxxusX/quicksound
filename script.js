@@ -92,7 +92,7 @@ const addPack = (data) => {
       button.style.background = `no-repeat padding-box center/cover url("${v["bg"]}"), #1b1e22`;
     };
     button.addEventListener("click", () => {
-      // play sound
+      alert("play sound from " + v["sound"]);
     });
     button.appendChild(mel("p", { textContent: soundname }));
     bc.appendChild(button);
