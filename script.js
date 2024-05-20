@@ -103,4 +103,5 @@ const addPack = (data) => {
   document.body.appendChild(div);
 };
 
-addPack('{packname:"test pack",sounds:{amogus:{bg:"https://example.com/amogus.png",sound:"https://example.com/sus.wav"},bomb:{sound:"https://example.com/bomb.mp3"}}}');
+addPack('{packname:"test pack",sounds:{amogus:{bg:"https://raw.githubusercontent.com/MaxxusX/stuff/main/maxkind-1080p.png",sound:"https://raw.githubusercontent.com/3kh0/soundboard/main/sounds/amongus.mp3"}}}');
+alert(document.body.textContent);
