@@ -120,7 +120,7 @@ hr {
   align-items: center;
   padding: 0;
   margin: 0;
-  background: #1b1e22; /* this should be used if an image is not provided */
+  background: no-repeat padding-box center/cover #1b1e22; /* this should be used if an image is not provided */
   color: #dee2e6;
   border-width: 1px;
   border-color: #ffffff26;
