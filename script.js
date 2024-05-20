@@ -80,7 +80,7 @@ const addPack = (data) => {
       alert(packname + " has a bad sound name!");
       return;
     };
-    if (v["sound"] && v["sound"].length > 0 && isURI(v["sound"])) {
+    if (!v["sound"] || v["sound"].length <= 0 || !isURI(v["sound"])) {
       alert(packname + " has a bad sound url!");
       return;;
     };
