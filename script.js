@@ -75,6 +75,7 @@ const isURI = (str) => {
 };
 
 const addPackButtons = (pack, packurl) => {
+  console.log("a");
   const packname = filterName(pack["packname"]);
 
   if (packname === "") {
@@ -85,6 +86,8 @@ const addPackButtons = (pack, packurl) => {
     alert(packname + " does not have any sounds!");
     return;
   };
+  
+  console.log("b");
 
   const div = mel("div");
   div.appendChild(mel("hr"));
@@ -98,6 +101,8 @@ const addPackButtons = (pack, packurl) => {
   });
   div.appendChild(packtitle);
   let sc = mel("div", { className: "sound-container" });
+  
+  console.log("c");
 
   for (const [k, v] of Object.entries(pack["sounds"])) {
     const soundname = filterName(k);
@@ -123,9 +128,13 @@ const addPackButtons = (pack, packurl) => {
     bc.appendChild(button);
     sc.appendChild(bc);
   };
+  
+  console.log("d");
 
   div.appendChild(sc);
   document.body.appendChild(div);
+  
+  console.log("e");
 };
 
 const addPack = (packurl) => {
@@ -133,7 +142,6 @@ const addPack = (packurl) => {
     headers: [
       ["Accept", "application/json;q=1.0, text/plain;q=0.9"],
     ],
-    mode: "cors",
     credentials: "omit",
     referrer: "",
     referrerPolicy: "no-referrer",
@@ -141,19 +149,19 @@ const addPack = (packurl) => {
     console.log(res);
     if (!res.ok) {
       alert(`a pack (${packurl}) has an HTTP error! Status: ${res.status}`);
-      return {};
+      return null;
     };
 
     return res.json();
   }).then(pack => {
     console.log(pack);
-    if (pack.length > 0) addPackButtons(pack, packurl);
-  });
+    if (pack !== null) addPackButtons(pack, packurl);
+  }, e => alert("unknown error, check console for more details.\n" + e));
 };
 
 document.querySelector("#cfs").addEventListener("click", () => {
   fontsize++;
-  localStorage.set("fs", String(fontsize));
+  localStorage.setItem("fs", String(fontsize % 3));
   switch (fontsize % 3) {
     case 0:
       document.querySelector(":root").style["font-size"] = "12px";
