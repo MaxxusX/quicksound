@@ -1,0 +1,13 @@
+{
+  "packname": "test pack",
+  "sounds": {
+    "amogus": {
+      "bg": "https://raw.githubusercontent.com/MaxxusX/quicksound/main/defaultPacks/maxxus.png",
+      "sound": "https://raw.githubusercontent.com/3kh0/soundboard/main/sounds/amongus.mp3"
+    },
+    "amogus part 2": {
+      "bg": "https://raw.githubusercontent.com/MaxxusX/quicksound/main/defaultPacks/maxxus.png",
+      "sound": "https://raw.githubusercontent.com/3kh0/soundboard/main/sounds/amongus.mp3"
+    }
+  }
+}

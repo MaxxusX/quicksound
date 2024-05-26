@@ -7,14 +7,14 @@ also remember if an image is not provided, to set the background to color #1b1e2
 format i think:
 
 {
-  packname: "example pack",
-  sounds: {
-    amogus: {
-      bg: "https://example.com/amogus.png",
-      sound: "https://example.com/sus.wav"
+  "packname": "example pack",
+  "sounds": {
+    "amogus": {
+      "bg": "https://example.com/amogus.png",
+      "sound": "https://example.com/sus.wav"
     },
-    bomb: {
-      sound: "https://example.com/bomb.mp3"
+    "bomb": {
+      "sound": "https://example.com/bomb.mp3"
     }
   }
 }
@@ -27,6 +27,22 @@ sound must be mp3, or wav.
 url protocols must be https: or data:
 
 */
+
+if (localStorage.getItem("fs") === null) localStorage.setItem("fs", "1");
+let fontsize = Number(localStorage.getItem("fs"));
+switch (fontsize % 3) {
+  case 0:
+    document.querySelector(":root").style["font-size"] = "12px";
+    break;
+  case 1:
+    document.querySelector(":root").style["font-size"] = null;
+    break;
+  case 2:
+    document.querySelector(":root").style["font-size"] = "20px";
+    break;
+};
+if (JSON.parse(localStorage.getItem("packs") ?? "[]").length === 0) localStorage.setItem("packs", '["https://raw.githubusercontent.com/MaxxusX/quicksound/main/defaultPacks/example.json"]');
+let packs = JSON.parse(localStorage.getItem("packs"));
 
 // DON'T WORRY! Everything passed through this function is inserted into
 // DOM through textContent, which doesn't parse this as HTML, therefore
@@ -45,6 +61,8 @@ const mel = (el, data) => {
 };
 
 const isURI = (str) => {
+  if (!str) return false;
+
   let url;
 
   try {
@@ -56,8 +74,7 @@ const isURI = (str) => {
   return url.protocol === "https:" || url.protocol === "data:";
 };
 
-const addPack = (data) => {
-  const pack = JSON.parse(data);
+const addPackButtons = (pack, packurl) => {
   const packname = filterName(pack["packname"]);
 
   if (packname === "") {
@@ -71,7 +88,15 @@ const addPack = (data) => {
 
   const div = mel("div");
   div.appendChild(mel("hr"));
-  div.appendChild(mel("h2", { textContent: packname }));
+  const packtitle = mel("h2", { textContent: packname, className: "packtitle" });
+  packtitle.addEventListener("click", () => {
+    if (window.confirm("Are you sure you want to remove this soundpack?")) {
+      const idx = packs.indexOf(packurl);
+      if (idx !== -1) localStorage.setItem("packs", JSON.stringify(packs.toSpliced(idx, 1)));
+      location.reload();
+    };
+  });
+  div.appendChild(packtitle);
   let sc = mel("div", { className: "sound-container" });
 
   for (const [k, v] of Object.entries(pack["sounds"])) {
@@ -80,15 +105,15 @@ const addPack = (data) => {
       alert(packname + " has a bad sound name!");
       return;
     };
-    if (!v["sound"] || v["sound"].length <= 0 || !isURI(v["sound"])) {
+    if (!isURI(v["sound"])) {
       alert(packname + " has a bad sound url!");
-      return;;
+      return;
     };
 
     let bc = mel("div");
     let button = mel("button", { type: "button" });
     // add bg and click detection to button
-    if (v["bg"] && v["bg"].length > 0 && isURI(v["bg"])) {
+    if (isURI(v["bg"])) {
       button.style.background = `no-repeat padding-box center/cover url("${v["bg"]}"), #1b1e22`;
     };
     button.addEventListener("click", () => {
@@ -103,12 +128,52 @@ const addPack = (data) => {
   document.body.appendChild(div);
 };
 
-addPack(JSON.stringify({
-  packname: "test pack",
-  sounds: {
-    amogus: {
-      bg: "https://raw.githubusercontent.com/MaxxusX/stuff/main/maxkind-1080p.png",
-      sound: "https://raw.githubusercontent.com/3kh0/soundboard/main/sounds/amongus.mp3",
-    },
-  },
-}));
+const addPack = (packurl) => {
+  fetch(packurl, {
+    headers: [
+      ["Accept", "application/json;q=1.0, text/plain;q=0.9"],
+    ],
+    mode: "cors",
+    credentials: "omit",
+    referrer: "",
+    referrerPolicy: "no-referrer",
+  }).then(res => {
+    console.log(res);
+    if (!res.ok) {
+      alert(`a pack (${packurl}) has an HTTP error! Status: ${res.status}`);
+      return {};
+    };
+
+    return res.json();
+  }).then(pack => {
+    console.log(pack);
+    if (pack.length > 0) addPackButtons(pack, packurl);
+  });
+};
+
+document.querySelector("#cfs").addEventListener("click", () => {
+  fontsize++;
+  localStorage.set("fs", String(fontsize));
+  switch (fontsize % 3) {
+    case 0:
+      document.querySelector(":root").style["font-size"] = "12px";
+      break;
+    case 1:
+      document.querySelector(":root").style["font-size"] = null;
+      break;
+    case 2:
+      document.querySelector(":root").style["font-size"] = "20px";
+      break;
+  };
+});
+
+packs.forEach(packurl => addPack(packurl));
+document.querySelector("#addpack").addEventListener("click", () => {
+  let url = prompt("link to pack.json");
+  if (!isURI(url)) {
+    alert("invalid url! link must be a direct path to the json file over https: or data:");
+  };
+  packs.push(url);
+  localStorage.setItem("packs", JSON.stringify(packs));
+  location.reload();
+});
