@@ -180,6 +180,7 @@ document.querySelector("#addpack").addEventListener("click", () => {
   let url = prompt("link to pack.json");
   if (!isURI(url)) {
     alert("invalid url! link must be a direct path to the json file over https: or data:");
+    return;
   };
   packs.push(url);
   localStorage.setItem("packs", JSON.stringify(packs));
