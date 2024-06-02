@@ -71,7 +71,7 @@ const isURI = (str) => {
     return false;
   };
 
-  return url.protocol === "https:" || url.protocol === "data:";
+  return url.protocol === "https:" || url.protocol === "data:" || url.protocol === "blob:";
 };
 
 const addPackButtons = (pack, packurl) => {
@@ -124,7 +124,7 @@ const addPackButtons = (pack, packurl) => {
     button.addEventListener("click", () => {
       alert("play sound from " + v["sound"]);
     });
-    button.appendChild(mel("p", { "data-text": soundname }));
+    button.appendChild(mel("p", { dataText: soundname }));
     bc.appendChild(button);
     sc.appendChild(bc);
   };
