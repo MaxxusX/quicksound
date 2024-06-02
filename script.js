@@ -30,17 +30,8 @@ url protocols must be https: data: or blob:
 
 if (localStorage.getItem("fs") === null) localStorage.setItem("fs", "1");
 let fontsize = Number(localStorage.getItem("fs"));
-switch (fontsize % 3) {
-  case 0:
-    document.querySelector(":root").style["font-size"] = "12px";
-    break;
-  case 1:
-    document.querySelector(":root").style["font-size"] = null;
-    break;
-  case 2:
-    document.querySelector(":root").style["font-size"] = "20px";
-    break;
-};
+document.querySelector(":root").dataset.fs = fontsize % 3;
+
 if (JSON.parse(localStorage.getItem("packs") ?? "[]").length === 0) localStorage.setItem("packs", '["https://raw.githubusercontent.com/MaxxusX/quicksound/main/defaultPacks/example.json"]');
 let packs = JSON.parse(localStorage.getItem("packs"));
 
@@ -162,17 +153,7 @@ const addPack = (packurl) => {
 document.querySelector("#cfs").addEventListener("click", () => {
   fontsize++;
   localStorage.setItem("fs", String(fontsize % 3));
-  switch (fontsize % 3) {
-    case 0:
-      document.querySelector(":root").style["font-size"] = "12px";
-      break;
-    case 1:
-      document.querySelector(":root").style["font-size"] = null;
-      break;
-    case 2:
-      document.querySelector(":root").style["font-size"] = "20px";
-      break;
-  };
+  document.querySelector(":root").dataset.fs = fontsize % 3;
 });
 
 packs.forEach(packurl => addPack(packurl));
