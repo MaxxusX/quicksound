@@ -24,7 +24,7 @@ packname and sound names are limited to 36 characters.
 other characters are ignored.
 bg must be png, jpg, or webp, not required, recommended size is 100x100.
 sound must be mp3, or wav.
-url protocols must be https: or data:
+url protocols must be https: data: or blob:
 
 */
 
