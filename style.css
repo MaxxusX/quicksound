@@ -6,6 +6,12 @@
   color-scheme: dark;
   scroll-behavior: smooth;
 }
+:root[data-fs="0"] {
+  font-size: 12px;
+}
+:root[data-fs="2"] {
+  font-size: 20px;
+}
 
 ::-moz-focus-inner {
   padding: 0;
