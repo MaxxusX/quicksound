@@ -52,13 +52,10 @@ const filterName = (name) => {
   return filtered.toString().trim().substring(0, 36).trim();
 };
 
-const mel = (el, data, datatags) => {
+const mel = (el, data) => {
   let element = document.createElement(el);
   for (const [k, v] of Object.entries(data ?? {})) {
     element[k] = v;
-  };
-  for (const [k, v] of Object.entries(datatags ?? {})) {
-    element.dataset[k] = v;
   };
   return element;
 };
@@ -127,7 +124,7 @@ const addPackButtons = (pack, packurl) => {
     button.addEventListener("click", () => {
       alert("play sound from " + v["sound"]);
     });
-    button.appendChild(mel("p", {}, { text: soundname }));
+    button.appendChild(mel("p", { textContent: soundname }));
     bc.appendChild(button);
     sc.appendChild(bc);
   };
