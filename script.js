@@ -23,7 +23,7 @@ must be a json file, host it on github or something.
 packname and sound names are limited to 36 characters.
 other characters are ignored.
 bg must be png, jpg, or webp, not required, recommended size is 100x100.
-sound must be mp3, or wav.
+sound must be mp3, wav, or ogg.
 url protocols must be https: data: or blob:
 
 */
@@ -113,13 +113,14 @@ const addPackButtons = (pack, packurl) => {
 
     let bc = mel("div");
     let button = mel("button", { type: "button" });
-    let audio = new Audio(v["sound"]);
     
     if (isURI(v["bg"])) {
       button.style.background = `no-repeat padding-box center/cover url("${v["bg"]}"), #1b1e22`;
     };
     
-    button.addEventListener("click", () => audio.play().catch(e => error(e)));
+    button.addEventListener("click", () => {
+      new Audio(v["sound"]).play().catch(e => error(e));
+    });
     
     button.appendChild(mel("p", { textContent: soundname }));
     
