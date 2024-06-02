@@ -1,33 +1,5 @@
 "use strict";
 
-/*
-remember to escape < and > from title and descripton!
-also remember if an image is not provided, to set the background to color #1b1e22 
-
-format i think:
-
-{
-  "packname": "example pack",
-  "sounds": {
-    "amogus": {
-      "bg": "https://example.com/amogus.png",
-      "sound": "https://example.com/sus.wav"
-    },
-    "bomb": {
-      "sound": "https://example.com/bomb.mp3"
-    }
-  }
-}
-
-must be a json file, host it on github or something.
-packname and sound names are limited to 36 characters.
-other characters are ignored.
-bg must be png, jpg, or webp, not required, recommended size is 100x100.
-sound must be mp3, wav, or ogg.
-url protocols must be https: data: or blob:
-
-*/
-
 if (localStorage.getItem("fs") === null) localStorage.setItem("fs", "1");
 let fontsize = Number(localStorage.getItem("fs"));
 document.querySelector(":root").dataset.fs = fontsize % 3;
