@@ -124,7 +124,7 @@ const addPackButtons = (pack, packurl) => {
     button.addEventListener("click", () => {
       alert("play sound from " + v["sound"]);
     });
-    button.appendChild(mel("p", { textContent: soundname }));
+    button.appendChild(mel("p", { "data-text": soundname }));
     bc.appendChild(button);
     sc.appendChild(bc);
   };
