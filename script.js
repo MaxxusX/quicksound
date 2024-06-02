@@ -65,16 +65,21 @@ const isURI = (str) => {
   return url.protocol === "https:" || url.protocol === "data:" || url.protocol === "blob:";
 };
 
+const error = (e) => {
+  console.error(e);
+  alert(e);
+};
+
 const addPackButtons = (pack, packurl) => {
   console.log("a");
   const packname = filterName(pack["packname"]);
 
   if (packname === "") {
-    alert("one of your packs is missing a packname!");
+    error("one of your packs is missing a packname!");
     return;
   };
   if ((packname["sounds"] ?? {}).length === 0) {
-    alert(packname + " does not have any sounds!");
+    error(packname + " does not have any sounds!");
     return;
   };
   
@@ -98,29 +103,29 @@ const addPackButtons = (pack, packurl) => {
   for (const [k, v] of Object.entries(pack["sounds"])) {
     const soundname = filterName(k);
     if (soundname === "") {
-      alert(packname + " has a bad sound name!");
+      error(packname + " has a bad sound name!");
       return;
     };
     if (!isURI(v["sound"])) {
-      alert(packname + " has a bad sound url!");
+      error(packname + " has a bad sound url!");
       return;
     };
 
     let bc = mel("div");
     let button = mel("button", { type: "button" });
-    // add bg and click detection to button
+    let audio = new Audio(v["sound"]);
+    
     if (isURI(v["bg"])) {
       button.style.background = `no-repeat padding-box center/cover url("${v["bg"]}"), #1b1e22`;
     };
-    button.addEventListener("click", () => {
-      alert("play sound from " + v["sound"]);
-    });
+    
+    button.addEventListener("click", () => audio.play().catch(e => error(e)));
+    
     button.appendChild(mel("p", { textContent: soundname }));
+    
     bc.appendChild(button);
     sc.appendChild(bc);
   };
-  
-  console.log("d");
 
   div.appendChild(sc);
   document.body.appendChild(div);
@@ -131,7 +136,7 @@ const addPackButtons = (pack, packurl) => {
 const addPack = (packurl) => {
   fetch(packurl, {
     headers: [
-      ["Accept", "application/json;q=1.0, text/plain;q=0.9"],
+      ["Accept", "application/json;q=1.0, text/plain;q=0.5"],
     ],
     credentials: "omit",
     referrer: "",
@@ -139,7 +144,7 @@ const addPack = (packurl) => {
   }).then(res => {
     console.log(res);
     if (!res.ok) {
-      alert(`a pack (${packurl}) has an HTTP error! Status: ${res.status}`);
+      error(`a pack (${packurl}) has an HTTP error! Status: ${res.status}`);
       return null;
     };
 
@@ -147,7 +152,7 @@ const addPack = (packurl) => {
   }).then(pack => {
     console.log(pack);
     if (pack !== null) addPackButtons(pack, packurl);
-  }, e => alert("unknown error, check console for more details.\n" + e));
+  }, e => error("unknown error, check console for more details.\n\n" + e));
 };
 
 document.querySelector("#cfs").addEventListener("click", () => {
@@ -159,8 +164,9 @@ document.querySelector("#cfs").addEventListener("click", () => {
 packs.forEach(packurl => addPack(packurl));
 document.querySelector("#addpack").addEventListener("click", () => {
   let url = prompt("link to pack.json");
+  if (url === null) return; // user clicked cancel
   if (!isURI(url)) {
-    alert("invalid url! link must be a direct path to the json file over https: or data:");
+    error("invalid url! link must be a direct path to the json file over https: data: or blob:");
     return;
   };
   packs.push(url);
