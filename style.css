@@ -159,19 +159,8 @@ hr {
   width: 100%;
   height: 100%;
   font-size: 3rem;
+  text-shadow: #000 0 0 2px, #000 3px 3px 2px;
   display: flex;
   justify-content: center;
   align-items: center;
-}
-.sound-container > div > button > p {
-  content: attr(data-text);
-  text-shadow: black 3px 3px 2px;
-  -webkit-text-stroke: 0.1rem #000000c0;
-}
-.sound-container > div > button > p::before {
-  position: absolute;
-  content: attr(data-text);
-  text-shadow: #0000 0 0 0;
-  -webkit-text-fill-color: #dee2e6;
-  -webkit-text-stroke: 0;
 }
