@@ -4,7 +4,7 @@ easy to use, open source soundboard
 created by maxxus
 
 ![Build Status](https://github.com/MaxxusX/quicksound/actions/workflows/static.yml/badge.svg)
-![CodeQL](https://github.com/MaxxusX/quicksound/actions/workflows/github-code-scanning/codeql/badge.svg)
+![CodeQL](https://github.com/MaxxusX/quicksound/actions/workflows/codeql.yml/badge.svg)
 
 ## TODO
 - [ ] Soundpack Versioning System for Future Overhauls and Breaking Changes
