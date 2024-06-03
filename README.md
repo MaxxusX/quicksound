@@ -4,15 +4,15 @@ easy to use, open source soundboard
 created by maxxus
 
 ## TODO
-- [] PWA Support
-- [] Menu for Managing Soundpacks (adding & removing, resetting to default, list of good soundpacks)
-- [] Caching
-- [] Don't Redownload The Same Sound Every Time It Plays
-- [] SEO
-- [] Make Better Default Soundpack
-- [] Make Default Soundpack Removeable
-- [] Setting to Adjust Volume of Sounds
-- [] Show Volume Warning on Loud Sounds (not automatic; set by creator of soundpack)
+- [ ] PWA Support
+- [ ] Menu for Managing Soundpacks (adding & removing, resetting to default, list of good soundpacks)
+- [ ] Caching
+- [ ] Don't Redownload The Same Sound Every Time It Plays
+- [ ] SEO
+- [ ] Make Better Default Soundpack
+- [ ] Make Default Soundpack Removeable
+- [ ] Setting to Adjust Volume of Sounds
+- [ ] Show Volume Warning on Loud Sounds (not automatic; set by creator of soundpack)
 
 ## soundpacks
 you can create "soundpacks", which allow you to add your own sounds to the soundboard.
