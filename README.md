@@ -3,6 +3,9 @@ easy to use, open source soundboard
 
 created by maxxus
 
+![Build Status](https://github.com/MaxxusX/quicksound/actions/workflows/static.yml/badge.svg)
+![CodeQL](https://github.com/MaxxusX/quicksound/actions/workflows/github-code-scanning/codeql/badge.svg)
+
 ## TODO
 - [ ] PWA Support
 - [ ] Menu for Managing Soundpacks (adding & removing, resetting to default, list of good soundpacks)
