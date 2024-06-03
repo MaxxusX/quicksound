@@ -36,7 +36,7 @@ jobs:
         with:
           sparse-checkout-cone-mode: false
           sparse-checkout: |
-            **/
+            **/*
             !**/*.md
       - name: Setup Pages
         uses: actions/configure-pages@v5
