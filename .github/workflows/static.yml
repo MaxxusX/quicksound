@@ -34,9 +34,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
+          sparse-checkout-cone-mode: false
           sparse-checkout: |
-            /*
-            !/*/*.md
+            **/
+            !**/*.md
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact
