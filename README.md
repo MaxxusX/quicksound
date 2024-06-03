@@ -7,15 +7,16 @@ created by maxxus
 ![CodeQL](https://github.com/MaxxusX/quicksound/actions/workflows/github-code-scanning/codeql/badge.svg)
 
 ## TODO
-- [ ] PWA Support
-- [ ] Menu for Managing Soundpacks (adding & removing, resetting to default, list of good soundpacks)
-- [ ] Caching
-- [ ] Don't Redownload The Same Sound Every Time It Plays
-- [ ] SEO
-- [ ] Make Better Default Soundpack
-- [ ] Make Default Soundpack Removeable
+- [ ] Soundpack Versioning System for Future Overhauls and Breaking Changes
 - [ ] Setting to Adjust Volume of Sounds
 - [ ] Show Volume Warning on Loud Sounds (not automatic; set by creator of soundpack)
+- [ ] Menu for Managing Soundpacks (adding & removing, resetting to default, list of good soundpacks)
+- [ ] Make Default Soundpack Removeable
+- [ ] SEO
+- [ ] Caching
+- [ ] Don't Redownload The Same Sound Every Time It Plays
+- [ ] Make Better Default Soundpack
+- [ ] PWA Support
 
 ## soundpacks
 you can create "soundpacks", which allow you to add your own sounds to the soundboard.
