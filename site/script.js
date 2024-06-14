@@ -4,7 +4,7 @@ if (localStorage.getItem("fs") === null) localStorage.setItem("fs", "1");
 let fontsize = Number(localStorage.getItem("fs"));
 document.querySelector(":root").dataset.fs = fontsize % 3;
 
-if (JSON.parse(localStorage.getItem("packs") ?? "[]").length === 0) localStorage.setItem("packs", '["https://raw.githubusercontent.com/MaxxusX/quicksound/main/defaultPacks/example.json"]');
+if (JSON.parse(localStorage.getItem("packs") ?? "[]").length === 0) localStorage.setItem("packs", '["HOSTED/test_pack.json"]');
 let packs = JSON.parse(localStorage.getItem("packs"));
 
 // DON'T WORRY! Everything passed through this function is inserted into
@@ -23,18 +23,16 @@ const mel = (el, data) => {
   return element;
 };
 
-const isURI = (str) => {
-  if (!str) return false;
+const getURL = (val) => {
+  if (val === null || val === undefined) return {"valid": false, "url": ""};
 
-  let url;
+  const str = val.toString();
+  const url = URL.parse(str, window.location.href);
 
-  try {
-    url = new URL(str);
-  } catch {
-    return false;
-  };
+  if (url === null) return {"valid": false, "url": str};
+  if (url.protocol !== "https:" && url.protocol !== "data:" && url.protocol !== "blob:") return {"valid": false, "url": str};
 
-  return url.protocol === "https:" || url.protocol === "data:" || url.protocol === "blob:";
+  return {"valid": true, "local": window.location.origin === url.origin, "url": url.href};
 };
 
 const error = (e) => {
