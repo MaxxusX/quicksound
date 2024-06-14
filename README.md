@@ -7,10 +7,15 @@ created by maxxus
 ![CodeQL](https://github.com/MaxxusX/quicksound/actions/workflows/codeql.yml/badge.svg)
 
 ## TODO
+- [ ] Add "author" Value to Soundpacks (creator(s) of soundpack)
+- [ ] Add "description" Value to Soundpacks (description of soundpack)
+- [ ] Add "homepage" Value to Soundpacks (link to soundpack repo/homepage)
 - [ ] Soundpack Versioning System for Future Overhauls and Breaking Changes
+- [ ] Warn Users When Adding Soundpack Not Hosted On This Repository (ppl can request to have their soundpacks hosted!)
 - [ ] Setting to Adjust Volume of Sounds
-- [ ] Show Volume Warning on Loud Sounds (not automatic; set by creator of soundpack)
-- [ ] Menu for Managing Soundpacks (adding & removing, resetting to default, list of good soundpacks)
+- [ ] Show Volume Warning on Loud Sounds (not automatic - set by creator of soundpack)
+- [ ] Show NSFW Warning on NSFW Sounds (not automatic - set by creator of soundpack; can be hidden via setting)
+- [ ] Menu for Managing Soundpacks (adding & removing, resetting to default, list of hosted soundpacks)
 - [ ] Make Default Soundpack Removeable
 - [ ] SEO
 - [ ] Caching
