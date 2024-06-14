@@ -24,13 +24,13 @@ const mel = (el, data) => {
 };
 
 const getURL = (val) => {
-  if (val === null || val === undefined) return {"valid": false, "url": ""};
+  if (val === null || val === undefined) return {"valid": false, "local": false, "url": ""};
 
   const str = val.toString();
   const url = URL.parse(str, window.location.href);
 
-  if (url === null) return {"valid": false, "url": str};
-  if (url.protocol !== "https:" && url.protocol !== "data:" && url.protocol !== "blob:") return {"valid": false, "url": str};
+  if (url === null) return {"valid": false, "local": false, "url": str};
+  if (url.protocol !== "https:" && url.protocol !== "data:" && url.protocol !== "blob:") return {"valid": false, "local": false, "url": str};
 
   return {"valid": true, "local": window.location.origin === url.origin, "url": url.href};
 };
@@ -76,7 +76,8 @@ const addPackButtons = (pack, packurl) => {
       error(packname + " has a bad sound name!");
       return;
     };
-    if (!isURI(v["sound"])) {
+    let soundurl = getURL(v["sound"]);
+    if (!soundurl.valid) {
       error(packname + " has a bad sound url!");
       return;
     };
