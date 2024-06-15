@@ -1,46 +1,48 @@
 // for when i don't have easy access to dev console
 if (document.querySelector("html").dataset.debug !== undefined) {
   document.addEventListener("DOMContentLoaded", () => document.querySelector(".spread").textContent = "debug");
-  
+  document.body.appendChild(document.createElement("pre").appendChild(Object.assign(document.createElement("code"), {"id": "debuglog"})));
+  const addtolog = (...t) => document.querySelector("#debuglog").innerHTML += "<hr>" + t.join(" ").replaceAll("<", "&lt;").replaceAll(">", "&gt;");
+
   const oldconsoledebug = (...t) => console.debug(t);
   console.debug = (...t) => {
     oldconsoledebug(t);
-    alert("debug\n\n" + t.join(" "));
+    addtolog("debug: " + t.join(" "));
   };
-  
+
   const oldconsoleerror = (...t) => console.error(t);
   console.error = (...t) => {
     oldconsoleerror(t);
-    alert("error\n\n" + t.join(" "));
+    addtolog("error: " + t.join(" "));
   };
-  
+
   const oldconsolewarn = (...t) => console.warn(t);
   console.warn = (...t) => {
     oldconsolewarn(t);
-    alert("warn\n\n" + t.join(" "));
+    addtolog("warn: " + t.join(" "));
   };
   
   const oldconsolelog = (...t) => console.log(t);
   console.log = (...t) => {
     oldconsolelog(t);
-    alert("log\n\n" + t.join(" "));
+    addtolog("log: " + t.join(" "));
   };
   
   const oldconsoleinfo = (...t) => console.info(t);
   console.info = (...t) => {
     oldconsoleinfo(t);
-    alert("info\n\n" + t.join(" "));
+    addtolog("info: " + t.join(" "));
   };
   
   const oldconsoletrace = (...t) => console.trace(t);
   console.trace = (...t) => {
     oldconsoletrace(t);
-    alert("trace\n\n" + t.join(" "));
+    addtolog("trace: " + t.join(" "));
   };
 
   window.addEventListener("error", e => {
     const a = `Error: ${e.message}\n\n${e.error}\n\n${e.filename}:${e.lineno}:${e.colno}\n\n\n${e}`;
     oldconsoleerror(e);
-    alert(e);
+    addtolog("error: " + e);
   });
 };
