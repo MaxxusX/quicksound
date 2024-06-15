@@ -1,6 +1,6 @@
 // for when i don't have easy access to dev console
 if (document.querySelector("html").dataset.debug !== undefined) {
-  document.querySelector(".spread").textContent = "debug";
+  document.addEventListener("DOMContentLoaded", () => document.querySelector(".spread").textContent = "debug");
   
   const oldconsoledebug = (...t) => console.debug(t);
   console.debug = (...t) => {
