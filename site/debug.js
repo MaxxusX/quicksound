@@ -1,6 +1,6 @@
 // for when i don't have easy access to dev console
 if (document.querySelector("html").dataset.debug !== undefined) {
-  alert("debug mode is enabled.");
+  document.querySelector(".spread").textContent = "debug";
   
   const oldconsoledebug = (...t) => console.debug(t);
   console.debug = (...t) => {
