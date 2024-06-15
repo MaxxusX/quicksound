@@ -4,7 +4,14 @@ if (localStorage.getItem("fs") === null) localStorage.setItem("fs", "1");
 let fontsize = Number(localStorage.getItem("fs"));
 document.querySelector(":root").dataset.fs = fontsize % 3;
 
-if (JSON.parse(localStorage.getItem("packs") ?? "[]").length === 0) localStorage.setItem("packs", '["HOSTED/test_pack.json"]');
+// using a try..catch here because JSON.parse throws errors if its not valid JSON
+try {
+  if (!Array.isArray(JSON.parse(localStorage.getItem("packs")))) {
+    throw new Error();
+  };
+} catch {
+  localStorage.setItem("packs", "[]");
+};
 let packs = JSON.parse(localStorage.getItem("packs"));
 
 // DON'T WORRY! Everything passed through this function is inserted into
