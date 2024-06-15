@@ -36,7 +36,7 @@ jobs:
         with:
           sparse-checkout-cone-mode: false
           sparse-checkout: |
-            /site/**/*
+            site/**/*
       #- uses: actions/setup-node@v4
       #  with:
       #    node-version: '20'
