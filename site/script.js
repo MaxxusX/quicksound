@@ -84,13 +84,14 @@ const addPackButtons = (pack, packurl) => {
 
     let bc = mel("div");
     let button = mel("button", { type: "button" });
-    
-    if (isURI(v["bg"])) {
-      button.style.background = `no-repeat padding-box center/cover url("${v["bg"]}"), #1b1e22`;
+
+    let bgurl = getURL(v["bg"]);
+    if (bgurl.valid) {
+      button.style.background = `no-repeat padding-box center/cover url("${bgurl.url}"), #1b1e22`;
     };
     
     button.addEventListener("click", () => {
-      new Audio(v["sound"]).play().catch(e => error(e));
+      new Audio(soundurl.url).play().catch(e => error(e));
     });
     
     button.appendChild(mel("p", { textContent: soundname }));
@@ -137,11 +138,12 @@ packs.forEach(packurl => addPack(packurl));
 document.querySelector("#addpack").addEventListener("click", () => {
   let url = prompt("link to pack.json");
   if (url === null) return; // user clicked cancel
-  if (!isURI(url)) {
+  url = getURL(url);
+  if (!url.valid) {
     error("invalid url! link must be a direct path to the json file over https: data: or blob:");
     return;
   };
-  packs.push(url);
+  packs.push(url.url);
   localStorage.setItem("packs", JSON.stringify(packs));
   location.reload();
 });
