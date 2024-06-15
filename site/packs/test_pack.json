@@ -2,11 +2,11 @@
   "packname": "test pack",
   "sounds": {
     "amogus": {
-      "bg": "HOSTED/test_pack-maxxus.png",
+      "bg": "./packs/test_pack-maxxus.png",
       "sound": "https://raw.githubusercontent.com/3kh0/soundboard/main/sounds/amongus.mp3"
     },
     "amogus part 2": {
-      "bg": "HOSTED/test_pack-maxxus.png",
+      "bg": "./packs/test_pack-maxxus.png",
       "sound": "https://raw.githubusercontent.com/3kh0/soundboard/main/sounds/amongus.mp3"
     }
   }
