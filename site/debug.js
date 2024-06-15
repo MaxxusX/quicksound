@@ -35,4 +35,10 @@ if (document.querySelector("html").dataset.debug !== undefined) {
     oldconsoletrace(t);
     alert("trace\n\n" + t.join(" "));
   };
+
+  window.addEventListener("error", e => {
+    const a = `Error: ${e.message}\n\n${e.error}\n\n${e.filename}:${e.lineno}:${e.colno}\n\n\n${e}`;
+    oldconsoleerror(e);
+    alert(e);
+  });
 };
