@@ -132,8 +132,39 @@ const addPack = (packurl) => {
   }, e => error("unknown error, check console for more details.\n\n" + e));
 };
 
-packs.forEach(packurl => addPack(packurl));
+// get list of hosted packs:
+/*
 
+fetch(getURL("./soundpacks.json").url, {
+  headers: [
+    ["Accept", "application/json;q=1.0, text/plain;q=0.5"],
+  ],
+  credentials: "omit",
+  referrer: "",
+  referrerPolicy: "no-referrer",
+}).then(res => {
+  console.log(res);
+  if (!res.ok) {
+    error(`uhhhhhh.. the soundpacks.json file threw an error ${res.status}`);
+    return [];
+  };
+
+  return res.json();
+}).then(packs => {
+  console.log(packs);
+
+  packs.forEach(pack => {
+    let listing = getURL(listing);
+
+    // ok so ${listing} is the url of the hosted pack!!
+    // now we can.. like... fetch their data and display them in a big list or something!!!
+  });
+
+}, e => error("unknown error fetching soundpacks.json, check console for more details.\n\n" + e));
+
+*/
+
+// TODO: replace this garbo with a nice menu
 document.querySelector("#addpack").addEventListener("click", () => {
   // example pack: "./test_pack/pack.json"
   let url = prompt("link to pack.json");
@@ -142,7 +173,7 @@ document.querySelector("#addpack").addEventListener("click", () => {
   url = getURL(url);
 
   if (!url.valid) {
-    error("invalid url! link must be a direct path to the json file over https: data: or blob:");
+    error("invalid url! if the soundpack is hosted, it can be a relative url; otherwise the link must be a direct path to the soundpack's json file over https: data: or blob:");
     return;
   };
   if (!url.local) {
@@ -153,3 +184,6 @@ document.querySelector("#addpack").addEventListener("click", () => {
   localStorage.setItem("packs", JSON.stringify(packs));
   location.reload();
 });
+
+// packs saved in localstorage
+packs.forEach(packurl => addPack(packurl));
