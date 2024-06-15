@@ -2,8 +2,8 @@
   "packname": "test pack",
   "sounds": {
     "amogus": {
-      "bg": "./packs/test_pack-maxxus.png",
-      "sound": "./packs/test_pack-maxxus.png"
+      "bg": "./maxxus.png",
+      "sound": "./amongus.mp3"
     }
   }
 }
