@@ -3,6 +3,11 @@
 if (localStorage.getItem("fs") === null) localStorage.setItem("fs", "1");
 let fontsize = Number(localStorage.getItem("fs"));
 document.querySelector(":root").dataset.fs = fontsize % 3;
+document.querySelector("#cfs").addEventListener("click", () => {
+  fontsize++;
+  localStorage.setItem("fs", String(fontsize % 3));
+  document.querySelector(":root").dataset.fs = fontsize % 3;
+});
 
 // using a try..catch here because JSON.parse throws errors if its not valid JSON
 try {
@@ -17,10 +22,7 @@ let packs = JSON.parse(localStorage.getItem("packs"));
 // DON'T WORRY! Everything passed through this function is inserted into
 // DOM through textContent, which doesn't parse this as HTML, therefore
 // preventing XSS, so we don't need to worry about escaping characters.
-const filterName = (name) => {
-  let filtered = name ?? "";
-  return filtered.toString().trim().substring(0, 36).trim();
-};
+const filterName = (name) => (name ?? "").toString().trim().substring(0, 36).trim();
 
 const mel = (el, data) => {
   let element = document.createElement(el);
@@ -34,12 +36,12 @@ const getURL = (val) => {
   if (val === null || val === undefined) return {"valid": false, "local": false, "url": ""};
 
   const str = val.toString();
-  const url = URL.parse(str, window.location.href);
+  const url = URL.parse(str, URL.parse("./packs/", window.location.href));
 
   if (url === null) return {"valid": false, "local": false, "url": str};
   if (url.protocol !== "https:" && url.protocol !== "data:" && url.protocol !== "blob:") return {"valid": false, "local": false, "url": str};
 
-  return {"valid": true, "local": window.location.origin === url.origin, "url": url.href};
+  return {"valid": true, "local": (window.location.origin === url.origin), "url": url.href};
 };
 
 const error = (e) => {
@@ -48,7 +50,6 @@ const error = (e) => {
 };
 
 const addPackButtons = (pack, packurl) => {
-  console.log("a");
   const packname = filterName(pack["packname"]);
 
   if (packname === "") {
@@ -59,8 +60,6 @@ const addPackButtons = (pack, packurl) => {
     error(packname + " does not have any sounds!");
     return;
   };
-  
-  console.log("b");
 
   const div = mel("div");
   div.appendChild(mel("hr"));
@@ -74,8 +73,6 @@ const addPackButtons = (pack, packurl) => {
   });
   div.appendChild(packtitle);
   let sc = mel("div", { className: "sound-container" });
-  
-  console.log("c");
 
   for (const [k, v] of Object.entries(pack["sounds"])) {
     const soundname = filterName(k);
@@ -135,21 +132,23 @@ const addPack = (packurl) => {
   }, e => error("unknown error, check console for more details.\n\n" + e));
 };
 
-document.querySelector("#cfs").addEventListener("click", () => {
-  fontsize++;
-  localStorage.setItem("fs", String(fontsize % 3));
-  document.querySelector(":root").dataset.fs = fontsize % 3;
-});
-
 packs.forEach(packurl => addPack(packurl));
+
 document.querySelector("#addpack").addEventListener("click", () => {
+  // example pack: "./test_pack/pack.json"
   let url = prompt("link to pack.json");
   if (url === null) return; // user clicked cancel
+
   url = getURL(url);
+
   if (!url.valid) {
     error("invalid url! link must be a direct path to the json file over https: data: or blob:");
     return;
   };
+  if (!url.local) {
+    if (!confirm("⚠️ USE AT YOUR OWN RISK ⚠️\n\nas this soundpack is externally hosted, i cannot confirm its saftey.\nfurthermore, you will be subject to the privacy policy, terms of service, and any other rules/regulations set forth by the author of this soundpack.\n\nif you do not wish to proceed, please click \"cancel\".")) return;
+  };
+
   packs.push(url.url);
   localStorage.setItem("packs", JSON.stringify(packs));
   location.reload();
