@@ -36,7 +36,6 @@ jobs:
         with:
           sparse-checkout-cone-mode: false
           sparse-checkout: |
-            !**/*
             site/**/*
       #- uses: actions/setup-node@v4
       #  with:
@@ -48,7 +47,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: '.'
+          path: './site'
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
