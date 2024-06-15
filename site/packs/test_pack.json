@@ -3,11 +3,7 @@
   "sounds": {
     "amogus": {
       "bg": "./packs/test_pack-maxxus.png",
-      "sound": "https://raw.githubusercontent.com/3kh0/soundboard/main/sounds/amongus.mp3"
-    },
-    "amogus part 2": {
-      "bg": "./packs/test_pack-maxxus.png",
-      "sound": "https://raw.githubusercontent.com/3kh0/soundboard/main/sounds/amongus.mp3"
+      "sound": "./packs/test_pack-maxxus.png"
     }
   }
 }
