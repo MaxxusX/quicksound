@@ -2,11 +2,10 @@
 if (document.querySelector("html").dataset.debug !== undefined) {
   document.addEventListener("DOMContentLoaded", () => {document.querySelector(".spread").textContent = "debug"});
   let debugpre = document.createElement("pre");
-  debugpre.appendChild(Object.assign(document.createElement("code"), {"id": "debuglog"}));
+  let debuglog = debugpre.appendChild(Object.assign(document.createElement("code"), {"id": "debuglog", "innerHTML": "debug log"}));
   document.body.appendChild(debugpre);
-  document.querySelector("#debuglog").textContent = "debug log";
   const addtolog = (...t) => {
-    document.querySelector("#debuglog").innerHTML += "<hr>" + t.join(" ").replaceAll("<", "&lt;").replaceAll(">", "&gt;");
+    document.querySelector("#debuglog").innerHTML += `<hr><p>${t.join(" ").replaceAll("<", "&lt;").replaceAll(">", "&gt;")}</p>`;
   };
 
   const oldconsoledebug = (...t) => console.debug(t);
