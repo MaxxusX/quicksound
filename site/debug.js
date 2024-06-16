@@ -1,6 +1,6 @@
 // for when i don't have easy access to dev console
 if (document.querySelector("html").dataset.debug !== undefined) {
-  document.addEventListener("DOMContentLoaded", () => document.querySelector(".spread").textContent = "debug");
+  document.addEventListener("DOMContentLoaded", () => {document.querySelector(".spread").textContent = "debug"});
   let debugpre = document.createElement("pre");
   debugpre.appendChild(Object.assign(document.createElement("code"), {"id": "debuglog"}));
   document.body.appendChild(debugpre);
