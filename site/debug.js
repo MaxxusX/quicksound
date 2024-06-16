@@ -44,7 +44,7 @@ if (document.querySelector("html").dataset.debug !== undefined) {
     addtolog("trace: " + t.join(" "));
   };
 
-  window.addEventListener("error", e => {
+  window.addEventListener("error", (e) => {
     const a = `Error: ${e.message}\n\n${e.error}\n\n${e.filename}:${e.lineno}:${e.colno}\n\n\n${e}`;
     oldconsoleerror(a);
     addtolog(a);
