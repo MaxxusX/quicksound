@@ -2,7 +2,7 @@
 if (document.querySelector("html").dataset.debug !== undefined) {
   document.addEventListener("DOMContentLoaded", () => {document.querySelector(".spread").textContent = "debug"});
   document.body.innerHTML += "<br><pre><code id=\"debuglog\">debug log</code></pre>";
-  const = debuglog = document.querySelector("#debuglog");
+  const debuglog = document.querySelector("#debuglog");
   const addtolog = (...t) => {
     debuglog.appendChild(document.createElement("hr"));
     debuglog.textContent += t.join(" ").replaceAll("<", "&lt;").replaceAll(">", "&gt;");
