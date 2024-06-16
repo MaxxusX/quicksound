@@ -1,11 +1,11 @@
 // for when i don't have easy access to dev console
 if (document.querySelector("html").dataset.debug !== undefined) {
   document.addEventListener("DOMContentLoaded", () => {document.querySelector(".spread").textContent = "debug"});
-  let debugpre = document.createElement("pre");
-  let debuglog = debugpre.appendChild(Object.assign(document.createElement("code"), {"id": "debuglog", "innerHTML": "debug log"}));
-  document.body.appendChild(debugpre);
+  document.body.innerHTML += "<br><pre><code id=\"debuglog\">debug log</code></pre>";
+  const = debuglog = document.querySelector("#debuglog");
   const addtolog = (...t) => {
-    document.querySelector("#debuglog").innerHTML += `<hr><p>${t.join(" ").replaceAll("<", "&lt;").replaceAll(">", "&gt;")}</p>`;
+    debuglog.appendChild(document.createElement("hr"));
+    debuglog.textContent += t.join(" ").replaceAll("<", "&lt;").replaceAll(">", "&gt;");
   };
 
   const oldconsoledebug = (...t) => console.debug(t);
