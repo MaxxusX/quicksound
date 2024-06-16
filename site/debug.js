@@ -1,3 +1,5 @@
+"use strict";
+
 // for when i don't have easy access to dev console
 if (document.querySelector("html").dataset.debug !== undefined) {
   document.addEventListener("DOMContentLoaded", () => {document.querySelector(".spread").textContent = "debug"});
