@@ -46,7 +46,7 @@ if (document.querySelector("html").dataset.debug !== undefined) {
 
   window.addEventListener("error", e => {
     const a = `Error: ${e.message}\n\n${e.error}\n\n${e.filename}:${e.lineno}:${e.colno}\n\n\n${e}`;
-    oldconsoleerror(e);
-    addtolog("error: " + e);
+    oldconsoleerror(a);
+    addtolog(a);
   });
 };
